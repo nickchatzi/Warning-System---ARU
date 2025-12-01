@@ -1,0 +1,325 @@
+###############################################################################
+#
+# IAR ELF Linker V8.40.2.214/W32 for ARM                  22/Jun/2025  21:43:43
+# Copyright 2007-2019 IAR Systems AB.
+#
+#    Output file  =
+#        C:\Users\nickh\Desktop\embedded\alarm
+#        system\iar\Release\Exe\alarm_system.out
+#    Map file     =
+#        C:\Users\nickh\Desktop\embedded\alarm
+#        system\iar\Release\List\alarm_system.map
+#    Command line =
+#        -f C:\Users\nickh\AppData\Local\Temp\EWC853.tmp
+#        ("C:\Users\nickh\Desktop\embedded\alarm
+#        system\iar\Release\Obj\gpio_driver.o"
+#        "C:\Users\nickh\Desktop\embedded\alarm system\iar\Release\Obj\lcd.o"
+#        "C:\Users\nickh\Desktop\embedded\alarm system\iar\Release\Obj\main.o"
+#        "C:\Users\nickh\Desktop\embedded\alarm
+#        system\iar\Release\Obj\pass_management.o"
+#        "C:\Users\nickh\Desktop\embedded\alarm
+#        system\iar\Release\Obj\rcc_driver.o"
+#        "C:\Users\nickh\Desktop\embedded\alarm
+#        system\iar\Release\Obj\spi_driver.o"
+#        "C:\Users\nickh\Desktop\embedded\alarm
+#        system\iar\Release\Obj\startup.o"
+#        "C:\Users\nickh\Desktop\embedded\alarm
+#        system\iar\Release\Obj\startup_stm32f030x6.o"
+#        "C:\Users\nickh\Desktop\embedded\alarm
+#        system\iar\Release\Obj\timers.o" --no_out_extension -o
+#        "C:\Users\nickh\Desktop\embedded\alarm
+#        system\iar\Release\Exe\alarm_system.out" --redirect
+#        _Printf=_PrintfFullNoMb --redirect _Scanf=_ScanfFullNoMb --map
+#        "C:\Users\nickh\Desktop\embedded\alarm
+#        system\iar\Release\List\alarm_system.map" --config
+#        "C:\Users\nickh\Desktop\embedded\alarm
+#        system\drivers\startup\stm32f030x6_flash.icf" --entry
+#        __iar_program_start --inline --vfe --text_out locale)
+#
+###############################################################################
+
+*******************************************************************************
+*** RUNTIME MODEL ATTRIBUTES
+***
+
+CppFlavor       = *
+__SystemLibrary = DLib
+__dlib_version  = 6
+
+
+*******************************************************************************
+*** HEAP SELECTION
+***
+
+The basic heap was selected because no calls to memory allocation
+functions were found in the application outside of system library
+functions, and there are calls to deallocation functions in the
+application.
+
+
+*******************************************************************************
+*** PLACEMENT SUMMARY
+***
+
+"A0":  place at address 0x800'0000 { ro section .intvec };
+"P1":  place in [from 0x800'0000 to 0x800'7fff] { ro };
+define block CSTACK with size = 1K, alignment = 8 { };
+define block HEAP with size = 512, alignment = 8 { };
+"P2":  place in [from 0x2000'0000 to 0x2000'0fff] {
+          rw, block CSTACK, block HEAP };
+initialize by copy { rw };
+
+  Section            Kind         Address    Size  Object
+  -------            ----         -------    ----  ------
+"A0":                                        0xb0
+  .intvec            ro code   0x800'0000    0xb0  startup_stm32f030x6.o [1]
+                             - 0x800'00b0    0xb0
+
+"P1":                                      0x1382
+  .text              ro code   0x800'00b0   0x4dc  main.o [1]
+  .text              ro code   0x800'058c   0x3d8  gpio_driver.o [1]
+  .text              ro code   0x800'0964    0x40  startup.o [1]
+  .text              ro code   0x800'09a4   0x150  spi_driver.o [1]
+  .text              ro code   0x800'0af4   0x280  lcd.o [1]
+  .text              ro code   0x800'0d74   0x1a8  pass_management.o [1]
+  .text              ro code   0x800'0f1c    0x34  ABImemcpy.o [3]
+  .text              ro code   0x800'0f50     0xe  strlen.o [3]
+  .text              ro code   0x800'0f5e    0xe0  I32DivModFast.o [3]
+  .rodata            const     0x800'103e     0x2  main.o [1]
+  .text              ro code   0x800'1040    0x4e  ABImemset.o [3]
+  .text              ro code   0x800'108e     0x2  startup_stm32f030x6.o [1]
+  .rodata            const     0x800'1090   0x1dc  lcd.o [1]
+  .text              ro code   0x800'126c    0x3c  packbits_init_single.o [3]
+  .text              ro code   0x800'12a8    0x28  data_init.o [3]
+  .iar.init_table    const     0x800'12d0    0x10  - Linker created -
+  .text              ro code   0x800'12e0    0x1e  cmain.o [3]
+  .text              ro code   0x800'12fe     0x8  exit.o [2]
+  .text              ro code   0x800'1306     0x2  startup_stm32f030x6.o [1]
+  .text              ro code   0x800'1308     0xa  cexit.o [3]
+  .text              ro code   0x800'1312     0x2  startup_stm32f030x6.o [1]
+  .text              ro code   0x800'1314     0xc  XXexit.o [3]
+  .rodata            const     0x800'1320    0x18  main.o [1]
+  .rodata            const     0x800'1338    0x18  main.o [1]
+  .rodata            const     0x800'1350    0x18  main.o [1]
+  .rodata            const     0x800'1368    0x18  pass_management.o [1]
+  .rodata            const     0x800'1380    0x10  main.o [1]
+  .rodata            const     0x800'1390    0x10  main.o [1]
+  .rodata            const     0x800'13a0    0x10  main.o [1]
+  .rodata            const     0x800'13b0    0x10  main.o [1]
+  .rodata            const     0x800'13c0    0x10  pass_management.o [1]
+  .rodata            const     0x800'13d0    0x10  pass_management.o [1]
+  .text              ro code   0x800'13e0    0x10  startup_stm32f030x6.o [1]
+  .text              ro code   0x800'13f0     0xc  cstartup_M.o [3]
+  .rodata            const     0x800'13fc     0x8  main.o [1]
+  .text              ro code   0x800'1404     0x2  startup_stm32f030x6.o [1]
+  .text              ro code   0x800'1406     0x2  startup_stm32f030x6.o [1]
+  .text              ro code   0x800'1408     0x2  startup_stm32f030x6.o [1]
+  .text              ro code   0x800'140a     0x2  startup_stm32f030x6.o [1]
+  .text              ro code   0x800'140c     0x2  startup_stm32f030x6.o [1]
+  .text              ro code   0x800'140e     0x2  startup_stm32f030x6.o [1]
+  .text              ro code   0x800'1410     0x2  startup_stm32f030x6.o [1]
+  .text              ro code   0x800'1412     0x2  startup_stm32f030x6.o [1]
+  .text              ro code   0x800'1414     0x2  startup_stm32f030x6.o [1]
+  .text              ro code   0x800'1416     0x2  startup_stm32f030x6.o [1]
+  .text              ro code   0x800'1418     0x2  startup_stm32f030x6.o [1]
+  .text              ro code   0x800'141a     0x2  startup_stm32f030x6.o [1]
+  .text              ro code   0x800'141c     0x2  startup_stm32f030x6.o [1]
+  .text              ro code   0x800'141e     0x2  startup_stm32f030x6.o [1]
+  .text              ro code   0x800'1420     0x2  startup_stm32f030x6.o [1]
+  .text              ro code   0x800'1422     0x2  startup_stm32f030x6.o [1]
+  .text              ro code   0x800'1424     0x2  startup_stm32f030x6.o [1]
+  .text              ro code   0x800'1426     0x2  startup_stm32f030x6.o [1]
+  .text              ro code   0x800'1428     0x2  startup_stm32f030x6.o [1]
+  .text              ro code   0x800'142a     0x2  startup_stm32f030x6.o [1]
+  .rodata            const     0x800'142c     0x0  packbits_init_single.o [3]
+  Initializer bytes  const     0x800'142c     0x6  <for P2-1>
+                             - 0x800'1432  0x1382
+
+"P2", part 1 of 2:                           0x15
+  P2-1                        0x2000'0000    0x15  <Init block>
+    .bss             inited   0x2000'0000     0x4  main.o [1]
+    .bss             inited   0x2000'0004     0x4  main.o [1]
+    .bss             inited   0x2000'0008     0x4  main.o [1]
+    .bss             inited   0x2000'000c     0x4  pass_management.o [1]
+    .data            inited   0x2000'0010     0x1  main.o [1]
+    .bss             inited   0x2000'0011     0x1  lcd.o [1]
+    .bss             inited   0x2000'0012     0x1  lcd.o [1]
+    .bss             inited   0x2000'0013     0x1  main.o [1]
+    .bss             inited   0x2000'0014     0x1  main.o [1]
+                            - 0x2000'0015    0x15
+
+"P2", part 2 of 2:                          0x400
+  CSTACK                      0x2000'0018   0x400  <Block>
+    CSTACK           uninit   0x2000'0018   0x400  <Block tail>
+                            - 0x2000'0418   0x400
+
+Unused ranges:
+
+         From           To    Size
+         ----           --    ----
+   0x800'1432   0x800'7fff  0x6bce
+  0x2000'0015  0x2000'0017     0x3
+  0x2000'0418  0x2000'0fff   0xbe8
+
+
+*******************************************************************************
+*** INIT TABLE
+***
+
+          Address      Size
+          -------      ----
+Copy/packbits (__iar_packbits_init_single3)
+    1 source range, total size 0x6 (28% of destination):
+           0x800'142c   0x6
+    1 destination range, total size 0x15:
+          0x2000'0000  0x15
+
+
+
+*******************************************************************************
+*** MODULE SUMMARY
+***
+
+    Module                  ro code  ro data  rw data
+    ------                  -------  -------  -------
+command line/config:
+    -------------------------------------------------
+    Total:
+
+C:\Users\nickh\Desktop\embedded\alarm system\iar\Release\Obj: [1]
+    gpio_driver.o               984
+    lcd.o                       640      477        2
+    main.o                    1'244      150       15
+    pass_management.o           424       57        4
+    spi_driver.o                336
+    startup.o                    64
+    startup_stm32f030x6.o       238
+    -------------------------------------------------
+    Total:                    3'930      684       21
+
+dl6M_tln.a: [2]
+    exit.o                        8
+    -------------------------------------------------
+    Total:                        8
+
+rt6M_tl.a: [3]
+    ABImemcpy.o                  52
+    ABImemset.o                  78
+    I32DivModFast.o             224
+    XXexit.o                     12
+    cexit.o                      10
+    cmain.o                      30
+    cstartup_M.o                 12
+    data_init.o                  40
+    packbits_init_single.o       60
+    strlen.o                     14
+    -------------------------------------------------
+    Total:                      532
+
+    Linker created                        16    1'024
+-----------------------------------------------------
+    Grand Total:              4'470      700    1'045
+
+
+*******************************************************************************
+*** ENTRY LIST
+***
+
+Entry                       Address   Size  Type      Object
+-----                       -------   ----  ----      ------
+.iar.init_table$$Base    0x800'12d0          --   Gb  - Linker created -
+.iar.init_table$$Limit   0x800'12e0          --   Gb  - Linker created -
+?main                    0x800'12e1         Code  Gb  cmain.o [3]
+ButtonDown_init          0x800'0365   0x26  Code  Gb  main.o [1]
+ButtonEnter_init         0x800'033f   0x26  Code  Gb  main.o [1]
+ButtonUp_init            0x800'0319   0x26  Code  Gb  main.o [1]
+CSPIN_Init               0x800'02f7   0x22  Code  Gb  main.o [1]
+CSTACK$$Base            0x2000'0018          --   Gb  - Linker created -
+CSTACK$$Limit           0x2000'0418          --   Gb  - Linker created -
+EXTI4_15_IRQHandler      0x800'0149  0x102  Code  Gb  main.o [1]
+GPIO_IRQHandling         0x800'092d   0x1a  Code  Gb  gpio_driver.o [1]
+GPIO_IRQInterruptConfig
+                         0x800'08b5   0x2c  Code  Gb  gpio_driver.o [1]
+GPIO_IRQPriorityConfig   0x800'08ed   0x40  Code  Gb  gpio_driver.o [1]
+GPIO_Init                0x800'065d  0x214  Code  Gb  gpio_driver.o [1]
+GPIO_PeripheralControl   0x800'058d   0xca  Code  Gb  gpio_driver.o [1]
+GPIO_WriteToOutputPin    0x800'0895   0x20  Code  Gb  gpio_driver.o [1]
+LCD_Select               0x800'0af5    0xe  Code  Gb  lcd.o [1]
+LCD_Unselect             0x800'0b03    0xe  Code  Gb  lcd.o [1]
+RSPIN_Init               0x800'02d3   0x24  Code  Gb  main.o [1]
+RSTPIN_Init              0x800'02af   0x24  Code  Gb  main.o [1]
+Region$$Table$$Base      0x800'12d0          --   Gb  - Linker created -
+Region$$Table$$Limit     0x800'12e0          --   Gb  - Linker created -
+SPI1_GPIOInits           0x800'025b   0x2c  Code  Gb  main.o [1]
+SPI1_Inits               0x800'0287   0x28  Code  Gb  main.o [1]
+SPIPeripheralControl     0x800'0a5d   0x1c  Code  Gb  spi_driver.o [1]
+SPI_GetFlagStatus        0x800'0a97   0x12  Code  Gb  spi_driver.o [1]
+SPI_Init                 0x800'09f9   0x64  Code  Gb  spi_driver.o [1]
+SPI_PeriClockControl     0x800'09a5   0x54  Code  Gb  spi_driver.o [1]
+SPI_SSIConfig            0x800'0a79   0x1e  Code  Gb  spi_driver.o [1]
+SPI_SendData             0x800'0aa9   0x2a  Code  Gb  spi_driver.o [1]
+SysTick_Config           0x800'096f   0x26  Code  Gb  startup.o [1]
+SysTick_Handler          0x800'038b    0xa  Code  Gb  main.o [1]
+SystemInit               0x800'0965    0xa  Code  Gb  startup.o [1]
+__ICFEDIT_region_RAM_end__ {Abs}
+                        0x2000'0fff         Data  Gb  <internal module>
+__ICFEDIT_region_RAM_start__ {Abs}
+                        0x2000'0000         Data  Gb  <internal module>
+__aeabi_idiv             0x800'0f8b         Code  Gb  I32DivModFast.o [3]
+__aeabi_idivmod          0x800'0f8b         Code  Gb  I32DivModFast.o [3]
+__aeabi_memcpy4          0x800'0f1d         Code  Gb  ABImemcpy.o [3]
+__aeabi_memcpy8          0x800'0f1d         Code  Gb  ABImemcpy.o [3]
+__aeabi_memset           0x800'1041         Code  Gb  ABImemset.o [3]
+__aeabi_uidiv            0x800'0f91         Code  Gb  I32DivModFast.o [3]
+__aeabi_uidivmod         0x800'0f91         Code  Gb  I32DivModFast.o [3]
+__cmain                  0x800'12e1         Code  Gb  cmain.o [3]
+__exit                   0x800'1315         Code  Gb  XXexit.o [3]
+__iar_Memset4_word       0x800'1061         Code  Gb  ABImemset.o [3]
+__iar_Memset_word        0x800'104d         Code  Gb  ABImemset.o [3]
+__iar_data_init3         0x800'12a9   0x28  Code  Gb  data_init.o [3]
+__iar_packbits_init_single3
+                         0x800'126d   0x3c  Code  Gb  packbits_init_single.o [3]
+__iar_program_start      0x800'13f1         Code  Gb  cstartup_M.o [3]
+__vector_table           0x800'0000         Data  Gb  startup_stm32f030x6.o [1]
+_call_main               0x800'12ed         Code  Gb  cmain.o [3]
+_exit                    0x800'1309         Code  Gb  cexit.o [3]
+_main                    0x800'12fb         Code  Gb  cmain.o [3]
+change_password          0x800'0d75   0xba  Code  Gb  pass_management.o [1]
+confirmed_selection     0x2000'0013    0x1  Data  Gb  main.o [1]
+current_column          0x2000'0012    0x1  Data  Gb  lcd.o [1]
+current_page            0x2000'0011    0x1  Data  Gb  lcd.o [1]
+delay                    0x800'024b   0x10  Code  Gb  main.o [1]
+exit                     0x800'12ff    0x8  Code  Gb  exit.o [2]
+flag                    0x2000'0014    0x1  Data  Gb  main.o [1]
+font5x8                  0x800'1090  0x1dc  Data  Gb  lcd.o [1]
+last_press_down         0x2000'0004    0x4  Data  Gb  main.o [1]
+last_press_up           0x2000'0000    0x4  Data  Gb  main.o [1]
+lcd_init                 0x800'0b75   0x66  Code  Gb  lcd.o [1]
+lcd_send_command         0x800'0b11   0x32  Code  Gb  lcd.o [1]
+lcd_send_data            0x800'0b43   0x32  Code  Gb  lcd.o [1]
+lcd_set_black_background
+                         0x800'0c3d   0x2e  Code  Gb  lcd.o [1]
+lcd_set_column           0x800'0bed   0x1e  Code  Gb  lcd.o [1]
+lcd_set_cursor           0x800'0c6b    0xa  Code  Gb  lcd.o [1]
+lcd_set_page             0x800'0bdb   0x12  Code  Gb  lcd.o [1]
+lcd_write_char           0x800'0c0b   0x32  Code  Gb  lcd.o [1]
+lcd_write_char_big       0x800'0c75   0xec  Code  Gb  lcd.o [1]
+main                     0x800'00b1   0x98  Code  Gb  main.o [1]
+mainMenu                 0x800'03b9  0x1a6  Code  Gb  main.o [1]
+ms_ticks                0x2000'0008    0x4  Data  Gb  main.o [1]
+password                0x2000'000c    0x4  Data  Gb  pass_management.o [1]
+selected_option         0x2000'0010    0x1  Data  Gb  main.o [1]
+strlen                   0x800'0f51         Code  Gb  strlen.o [3]
+test                     0x800'0e2f   0xd6  Code  Gb  pass_management.o [1]
+
+
+[1] = C:\Users\nickh\Desktop\embedded\alarm system\iar\Release\Obj
+[2] = dl6M_tln.a
+[3] = rt6M_tl.a
+
+  4'470 bytes of readonly  code memory
+    700 bytes of readonly  data memory
+  1'045 bytes of readwrite data memory
+
+Errors: none
+Warnings: none

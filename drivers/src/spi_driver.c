@@ -35,11 +35,7 @@ void SPI_PeriClockControl(SPI_RegDef *pSPIx, uint8_t EnorDi)
         else if (pSPIx == SPI2)
         {
             SPI2_PCLK_EN();
-        }
-        else if (pSPIx == SPI3)
-        {
-            SPI3_PCLK_EN();
-        }                          
+        }                         
     }
     else
     {
@@ -50,11 +46,7 @@ void SPI_PeriClockControl(SPI_RegDef *pSPIx, uint8_t EnorDi)
         else if (pSPIx == SPI2)
         {
             SPI2_PCLK_DIS();
-        }
-        else if (pSPIx == SPI3)
-        {
-            SPI3_PCLK_DIS();
-        }           
+        }        
     }
 }
 
@@ -146,10 +138,6 @@ void SPI_DeInit(SPI_RegDef *pSPIx)
     else if (pSPIx == SPI2)
     {
         SPI2_REG_RESET();
-    }
-    else if (pSPIx == SPI3)
-    {
-        SPI3_REG_RESET();
     }
 }
 /*********************************************************************************/
@@ -293,7 +281,6 @@ void SPI_SendData(SPI_RegDef *pSPIx, uint8_t *pTxBuffer, uint32_t Len)
     {
         //Wait until TXE is empty
         while (!(pSPIx->SR & (1 << TXE))); 
-        /*FUTURE UPDATE ADD WATCHDOG SET UP TO PREVENT WHILE HANGING*/
 
         //Then check the DFF (CRCL) BIT in CR1 register
         if (pSPIx->CR1 & (1 << CRCL)) 
@@ -306,7 +293,7 @@ void SPI_SendData(SPI_RegDef *pSPIx, uint8_t *pTxBuffer, uint32_t Len)
         }
         else
         {
-            pSPIx->DR = *pTxBuffer; 
+             *((volatile uint8_t*)&pSPIx->DR) = *pTxBuffer; 
             Len--;
             pTxBuffer++;
         }
@@ -456,32 +443,16 @@ void SPI_IRQInterruptConfig(uint8_t IRQNumber, uint8_t EnorDi)
     {
         if (IRQNumber <= 31)
         {
-            *NVIC_ISER0 |= ( 1 << IRQNumber );
+            *NVIC_ISER |= ( 1 << IRQNumber );
         }
-        else if (IRQNumber > 31 && IRQNumber < 64)
-        {
-            *NVIC_ISER1 |= ( 1 << (IRQNumber % 32) );
-        }
-        else if (IRQNumber >= 64 && IRQNumber < 96)
-        {
-            *NVIC_ISER2 |= ( 1 << (IRQNumber % 64) );
-        }       
     }
     else
     {
         if (IRQNumber <= 31)
         {
-            *NVIC_ICER0 |= ( 1 << IRQNumber );
-        }
-        else if (IRQNumber > 31 && IRQNumber < 64)
-        {
-            *NVIC_ICER1 |= ( 1 << (IRQNumber % 32) );
-        }
-        else if (IRQNumber >= 64 && IRQNumber < 96)
-        {
-            *NVIC_ICER2 |= ( 1 << (IRQNumber % 64) );
-        }       
-    }       
+            *NVIC_ICER |= ( 1 << IRQNumber );
+        } 
+    }     
 }
 /*********************************************************************************/
 
@@ -736,7 +707,7 @@ void SPI_CloseReception(SPI_Handle *pSPIHandle)
     pSPIHandle->RxState = SPI_READY;    
 }
 
-__attribute__((weak)) void SPIApplicationEventCallback(SPI_Handle *pSPIHandle, uint8_t AppEv)
+void SPIApplicationEventCallback(SPI_Handle *pSPIHandle, uint8_t AppEv)
 {
 }
 

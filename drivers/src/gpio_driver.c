@@ -36,25 +36,9 @@ void GPIO_PeripheralControl(GPIOx_RegDef *pGpiox, uint8_t EnorDi)
         {
             GPIOD_PCLK_EN();
         }
-        else if (pGpiox == GPIOE)
-        {
-            GPIOE_PCLK_EN();
-        }
         else if (pGpiox == GPIOF)
         {
             GPIOF_PCLK_EN();
-        } 
-        else if (pGpiox == GPIOG)
-        {
-            GPIOG_PCLK_EN();
-        }  
-        else if (pGpiox == GPIOH)
-        {
-            GPIOH_PCLK_EN();
-        }
-        else if (pGpiox == GPIOI)
-        {
-            GPIOI_PCLK_EN();
         }                                     
     }
     else
@@ -75,26 +59,10 @@ void GPIO_PeripheralControl(GPIOx_RegDef *pGpiox, uint8_t EnorDi)
         {
             GPIOD_PCLK_DIS();
         }
-        else if (pGpiox == GPIOE)
-        {
-            GPIOE_PCLK_DIS();
-        }
         else if (pGpiox == GPIOF)
         {
             GPIOF_PCLK_DIS();
-        }
-        else if (pGpiox == GPIOG)
-        {
-            GPIOG_PCLK_DIS();
-        }
-        else if (pGpiox == GPIOH)
-        {
-            GPIOH_PCLK_DIS();
-        }    
-        else if (pGpiox == GPIOI)
-        {
-            GPIOI_PCLK_DIS();
-        }                    
+        }                   
     }
 }
 
@@ -278,26 +246,10 @@ void GPIO_DeInit(GPIOx_RegDef *pGpiox)
     {
         GPIOD_REG_RESET();
     }
-    else if (pGpiox == GPIOE)
-    {
-        GPIOE_REG_RESET();
-    }
     else if (pGpiox == GPIOF)
     {
         GPIOF_REG_RESET();
-    } 
-    else if (pGpiox == GPIOG)
-    {
-        GPIOG_REG_RESET();
     }  
-    else if (pGpiox == GPIOH)
-    {
-        GPIOH_REG_RESET();
-    }
-    else if (pGpiox == GPIOI)
-    {
-        GPIOI_REG_RESET();
-    } 
 }
 /*********************************************************************************/
 
@@ -444,37 +396,19 @@ void GPIO_ToggleOutputPin(GPIOx_RegDef *pGpiox, uint8_t PinNumber)
 
 void GPIO_IRQInterruptConfig(uint8_t IRQNumber, uint8_t EnorDi)
 {
-    if(EnorDi == ENABLE)
+    if(IRQNumber < 32)  // Only IRQ numbers 0–31 are valid on Cortex-M0
     {
-        if (IRQNumber <= 31)
+        if(EnorDi == ENABLE)
         {
-            *NVIC_ISER0 |= ( 1 << IRQNumber );
+            *NVIC_ISER |= (1 << IRQNumber);
         }
-        else if (IRQNumber > 31 && IRQNumber < 64)
+        else
         {
-            *NVIC_ISER1 |= ( 1 << (IRQNumber % 32) );
+            *NVIC_ICER |= (1 << IRQNumber);
         }
-        else if (IRQNumber >= 64 && IRQNumber < 96)
-        {
-            *NVIC_ISER2 |= ( 1 << (IRQNumber % 64) );
-        }       
     }
-    else
-    {
-        if (IRQNumber <= 31)
-        {
-            *NVIC_ICER0 |= ( 1 << IRQNumber );
-        }
-        else if (IRQNumber > 31 && IRQNumber < 64)
-        {
-            *NVIC_ICER1 |= ( 1 << (IRQNumber % 32) );
-        }
-        else if (IRQNumber >= 64 && IRQNumber < 96)
-        {
-            *NVIC_ICER2 |= ( 1 << (IRQNumber % 64) );
-        }       
-    }       
 }
+
 /********************************************************************************/
 
 /***************************IRQ Priority Config***********************************

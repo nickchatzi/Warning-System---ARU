@@ -1,0 +1,562 @@
+###############################################################################
+#
+# IAR ELF Linker V8.40.2.214/W32 for ARM                  30/Nov/2025  21:10:04
+# Copyright 2007-2019 IAR Systems AB.
+#
+#    Output file  =
+#        C:\Users\nickh\Desktop\embedded\alarm
+#        system\iar\Debug\Exe\alarm_system.out
+#    Map file     =
+#        C:\Users\nickh\Desktop\embedded\alarm
+#        system\iar\Debug\List\alarm_system.map
+#    Command line =
+#        -f C:\Users\nickh\AppData\Local\Temp\EW929.tmp
+#        ("C:\Users\nickh\Desktop\embedded\alarm
+#        system\iar\Debug\Obj\all_inits.o"
+#        "C:\Users\nickh\Desktop\embedded\alarm system\iar\Debug\Obj\buzzer.o"
+#        "C:\Users\nickh\Desktop\embedded\alarm system\iar\Debug\Obj\display.o"
+#        "C:\Users\nickh\Desktop\embedded\alarm
+#        system\iar\Debug\Obj\gpio_driver.o"
+#        "C:\Users\nickh\Desktop\embedded\alarm
+#        system\iar\Debug\Obj\i2c_driver.o"
+#        "C:\Users\nickh\Desktop\embedded\alarm
+#        system\iar\Debug\Obj\init_system_states.o"
+#        "C:\Users\nickh\Desktop\embedded\alarm
+#        system\iar\Debug\Obj\interrupts.o"
+#        "C:\Users\nickh\Desktop\embedded\alarm system\iar\Debug\Obj\lcd.o"
+#        "C:\Users\nickh\Desktop\embedded\alarm system\iar\Debug\Obj\main.o"
+#        "C:\Users\nickh\Desktop\embedded\alarm
+#        system\iar\Debug\Obj\rcc_driver.o"
+#        "C:\Users\nickh\Desktop\embedded\alarm
+#        system\iar\Debug\Obj\spi_driver.o"
+#        "C:\Users\nickh\Desktop\embedded\alarm system\iar\Debug\Obj\startup.o"
+#        "C:\Users\nickh\Desktop\embedded\alarm
+#        system\iar\Debug\Obj\startup_stm32f030x6.o"
+#        "C:\Users\nickh\Desktop\embedded\alarm system\iar\Debug\Obj\timers.o"
+#        "C:\Users\nickh\Desktop\embedded\alarm system\iar\Debug\Obj\tmp75.o"
+#        --no_out_extension -o "C:\Users\nickh\Desktop\embedded\alarm
+#        system\iar\Debug\Exe\alarm_system.out" --redirect
+#        _Printf=_PrintfFullNoMb --redirect _Scanf=_ScanfFullNoMb --map
+#        "C:\Users\nickh\Desktop\embedded\alarm
+#        system\iar\Debug\List\alarm_system.map" --config
+#        "C:\Users\nickh\Desktop\embedded\alarm
+#        system\drivers\startup\stm32f030x6_flash.icf" --semihosting --entry
+#        __iar_program_start --vfe --text_out locale)
+#
+###############################################################################
+
+*******************************************************************************
+*** RUNTIME MODEL ATTRIBUTES
+***
+
+CppFlavor       = *
+__SystemLibrary = DLib
+__dlib_version  = 6
+
+
+*******************************************************************************
+*** HEAP SELECTION
+***
+
+The basic heap was selected because no calls to memory allocation
+functions were found in the application outside of system library
+functions, and there are calls to deallocation functions in the
+application.
+
+
+*******************************************************************************
+*** PLACEMENT SUMMARY
+***
+
+"A0":  place at address 0x800'0000 { ro section .intvec };
+"P1":  place in [from 0x800'0000 to 0x800'7fff] { ro };
+define block CSTACK with size = 1K, alignment = 8 { };
+define block HEAP with size = 512, alignment = 8 { };
+"P2":  place in [from 0x2000'0000 to 0x2000'0fff] {
+          rw, block CSTACK, block HEAP };
+initialize by copy { rw };
+
+  Section            Kind         Address    Size  Object
+  -------            ----         -------    ----  ------
+"A0":                                        0xb0
+  .intvec            ro code   0x800'0000    0xb0  startup_stm32f030x6.o [1]
+                             - 0x800'00b0    0xb0
+
+"P1":                                      0x371b
+  .text              ro code   0x800'00b0  0x1064  xprintffull_nomb.o [2]
+  .text              ro code   0x800'1114    0x12  strchr.o [4]
+  .text              ro code   0x800'1126     0xa  xsprout.o [2]
+  .text              ro code   0x800'1130    0x48  xfail_s.o [2]
+  .text              ro code   0x800'1178     0xe  strlen.o [4]
+  .rodata            const     0x800'1186     0x2  xlocale_c.o [2]
+  .text              ro code   0x800'1188    0x16  memchr.o [4]
+  .text              ro code   0x800'119e     0x2  startup_stm32f030x6.o [1]
+  .text              ro code   0x800'11a0    0x4e  ABImemcpy.o [4]
+  .text              ro code   0x800'11ee    0x32  DblCmpLe.o [3]
+  .text              ro code   0x800'1220    0x32  DblCmpGe.o [3]
+  .text              ro code   0x800'1252     0x2  startup_stm32f030x6.o [1]
+  .text              ro code   0x800'1254    0x52  DblToI32.o [3]
+  .text              ro code   0x800'12a6     0x2  startup_stm32f030x6.o [1]
+  .text              ro code   0x800'12a8    0x34  IxxToDbl.o [3]
+  .text              ro code   0x800'12dc   0x1a8  DblAddSub.o [3]
+  .text              ro code   0x800'1484    0xe0  I32DivModFast.o [4]
+  .text              ro code   0x800'1564    0xc2  DblDiv.o [3]
+  .text              ro code   0x800'1626   0x184  DblMul.o [3]
+  .text              ro code   0x800'17aa     0x2  startup_stm32f030x6.o [1]
+  .text              ro code   0x800'17ac     0xc  xlocale_c.o [2]
+  .text              ro code   0x800'17b8    0x6a  I64DivMod.o [4]
+  .text              ro code   0x800'1822     0xa  abort.o [2]
+  .text              ro code   0x800'182c     0x2  IntDivZer.o [4]
+  .text              ro code   0x800'182e     0x2  startup_stm32f030x6.o [1]
+  .text              ro code   0x800'1830     0x2  I64DivZer.o [4]
+  .text              ro code   0x800'1832     0x2  startup_stm32f030x6.o [1]
+  .text              ro code   0x800'1834    0x14  exit.o [5]
+  .text              ro code   0x800'1848   0x424  display.o [1]
+  .text              ro code   0x800'1c6c    0x36  IxxToFlt.o [3]
+  .text              ro code   0x800'1ca2    0xb0  FltMul.o [3]
+  .text              ro code   0x800'1d52     0x2  startup_stm32f030x6.o [1]
+  .text              ro code   0x800'1d54    0x32  FltToDbl.o [3]
+  .text              ro code   0x800'1d86     0x2  startup_stm32f030x6.o [1]
+  .text              ro code   0x800'1d88    0x40  sprintf.o [2]
+  .text              ro code   0x800'1dc8   0x2b8  lcd.o [1]
+  .text              ro code   0x800'2080   0x14c  tmp75.o [1]
+  .text              ro code   0x800'21cc   0x190  buzzer.o [1]
+  .text              ro code   0x800'235c   0x408  gpio_driver.o [1]
+  .text              ro code   0x800'2764   0x158  spi_driver.o [1]
+  .text              ro code   0x800'28bc   0x238  i2c_driver.o [1]
+  .text              ro code   0x800'2af4    0xb8  startup.o [1]
+  .text              ro code   0x800'2bac    0x26  FltCmpLe.o [3]
+  .text              ro code   0x800'2bd2     0x2  startup_stm32f030x6.o [1]
+  .text              ro code   0x800'2bd4   0x2c0  init_system_states.o [1]
+  .text              ro code   0x800'2e94    0x3a  FltToS32.o [3]
+  .text              ro code   0x800'2ece     0x2  startup_stm32f030x6.o [1]
+  .text              ro code   0x800'2ed0   0x2b8  all_inits.o [1]
+  .text              ro code   0x800'3188    0xac  timers.o [1]
+  .rodata            const     0x800'3234   0x1dc  lcd.o [1]
+  .text              ro code   0x800'3410    0xe4  interrupts.o [1]
+  .rodata            const     0x800'34f4    0x6a  xprintffull_nomb.o [2]
+  .text              ro code   0x800'355e    0x62  main.o [1]
+  .text              ro code   0x800'35c0    0x3c  zero_init3.o [4]
+  Initializer bytes  const     0x800'35fc    0x3c  <for P2-1>
+  .text              ro code   0x800'3638    0x30  copy_init3.o [4]
+  .text              ro code   0x800'3668    0x28  data_init.o [4]
+  .iar.init_table    const     0x800'3690    0x24  - Linker created -
+  .text              ro code   0x800'36b4    0x1e  cmain.o [4]
+  .text              ro code   0x800'36d2     0x4  low_level_init.o [2]
+  .text              ro code   0x800'36d6     0x8  exit.o [2]
+  .text              ro code   0x800'36de     0x2  startup_stm32f030x6.o [1]
+  .text              ro code   0x800'36e0     0xa  cexit.o [4]
+  .text              ro code   0x800'36ea     0x2  startup_stm32f030x6.o [1]
+  .rodata            const     0x800'36ec    0x18  display.o [1]
+  .rodata            const     0x800'3704    0x18  display.o [1]
+  .rodata            const     0x800'371c    0x18  display.o [1]
+  .rodata            const     0x800'3734    0x14  display.o [1]
+  .rodata            const     0x800'3748    0x14  display.o [1]
+  .text              ro code   0x800'375c    0x10  startup_stm32f030x6.o [1]
+  .rodata            const     0x800'376c     0xc  init_system_states.o [1]
+  .rodata            const     0x800'3778     0xc  init_system_states.o [1]
+  .text              ro code   0x800'3784     0xc  cstartup_M.o [4]
+  .rodata            const     0x800'3790     0x8  display.o [1]
+  .rodata            const     0x800'3798     0x8  init_system_states.o [1]
+  .rodata            const     0x800'37a0     0x8  init_system_states.o [1]
+  .rodata            const     0x800'37a8     0x8  init_system_states.o [1]
+  .rodata            const     0x800'37b0     0x8  init_system_states.o [1]
+  .text              ro code   0x800'37b8     0x2  startup_stm32f030x6.o [1]
+  .text              ro code   0x800'37ba     0x2  startup_stm32f030x6.o [1]
+  .text              ro code   0x800'37bc     0x2  startup_stm32f030x6.o [1]
+  .text              ro code   0x800'37be     0x2  startup_stm32f030x6.o [1]
+  .text              ro code   0x800'37c0     0x2  startup_stm32f030x6.o [1]
+  .text              ro code   0x800'37c2     0x2  startup_stm32f030x6.o [1]
+  .text              ro code   0x800'37c4     0x2  startup_stm32f030x6.o [1]
+  .text              ro code   0x800'37c6     0x2  startup_stm32f030x6.o [1]
+  .text              ro code   0x800'37c8     0x2  startup_stm32f030x6.o [1]
+  .rodata            const     0x800'37ca     0x1  xlocale_c.o [2]
+  .rodata            const     0x800'37cb     0x0  zero_init3.o [4]
+  .rodata            const     0x800'37cb     0x0  copy_init3.o [4]
+                             - 0x800'37cb  0x371b
+
+"P2", part 1 of 3:                           0x3c
+  P2-1                        0x2000'0000    0x3c  <Init block>
+    .data            inited   0x2000'0000    0x38  xlocale_c.o [2]
+    .data            inited   0x2000'0038     0x2  display.o [1]
+    .data            inited   0x2000'003a     0x2  display.o [1]
+                            - 0x2000'003c    0x3c
+
+"P2", part 2 of 3:                          0x240
+  .bss               zero     0x2000'003c   0x1e0  tmp75.o [1]
+  .bss               zero     0x2000'021c    0x28  all_inits.o [1]
+  .bss               zero     0x2000'0244     0x4  buzzer.o [1]
+  .bss               zero     0x2000'0248     0x4  buzzer.o [1]
+  .bss               zero     0x2000'024c     0x4  buzzer.o [1]
+  .bss               zero     0x2000'0250     0x4  display.o [1]
+  .bss               zero     0x2000'0254     0x4  interrupts.o [1]
+  .bss               zero     0x2000'0258     0x4  startup.o [1]
+  .bss               zero     0x2000'025c     0x4  tmp75.o [1]
+  .bss               zero     0x2000'0260     0x4  tmp75.o [1]
+  .bss               zero     0x2000'0264     0x4  xfail_s.o [2]
+  .bss               zero     0x2000'0268     0x2  tmp75.o [1]
+  .bss               zero     0x2000'026a     0x1  buzzer.o [1]
+  .bss               zero     0x2000'026b     0x1  buzzer.o [1]
+  .bss               zero     0x2000'026c     0x1  buzzer.o [1]
+  .bss               zero     0x2000'026d     0x1  buzzer.o [1]
+  .bss               zero     0x2000'026e     0x1  buzzer.o [1]
+  .bss               zero     0x2000'026f     0x1  buzzer.o [1]
+  .bss               zero     0x2000'0270     0x1  buzzer.o [1]
+  .bss               zero     0x2000'0271     0x1  display.o [1]
+  .bss               zero     0x2000'0272     0x1  display.o [1]
+  .bss               zero     0x2000'0273     0x1  display.o [1]
+  .bss               zero     0x2000'0274     0x1  display.o [1]
+  .bss               zero     0x2000'0275     0x1  interrupts.o [1]
+  .bss               zero     0x2000'0276     0x1  lcd.o [1]
+  .bss               zero     0x2000'0277     0x1  lcd.o [1]
+  .bss               zero     0x2000'0278     0x1  tmp75.o [1]
+  .bss               zero     0x2000'0279     0x1  tmp75.o [1]
+  .bss               zero     0x2000'027a     0x1  tmp75.o [1]
+  .bss               zero     0x2000'027b     0x1  tmp75.o [1]
+                            - 0x2000'027c   0x240
+
+"P2", part 3 of 3:                          0x400
+  CSTACK                      0x2000'0280   0x400  <Block>
+    CSTACK           uninit   0x2000'0280   0x400  <Block tail>
+                            - 0x2000'0680   0x400
+
+Unused ranges:
+
+         From           To    Size
+         ----           --    ----
+   0x800'37cb   0x800'7fff  0x4835
+  0x2000'027c  0x2000'027f     0x4
+  0x2000'0680  0x2000'0fff   0x980
+
+
+*******************************************************************************
+*** INIT TABLE
+***
+
+          Address      Size
+          -------      ----
+Zero (__iar_zero_init3)
+    1 destination range, total size 0x240:
+          0x2000'003c  0x240
+
+Copy (__iar_copy_init3)
+    1 source range, total size 0x3c:
+           0x800'35fc   0x3c
+    1 destination range, total size 0x3c:
+          0x2000'0000   0x3c
+
+
+
+*******************************************************************************
+*** MODULE SUMMARY
+***
+
+    Module                 ro code  ro data  rw data
+    ------                 -------  -------  -------
+command line/config:
+    ------------------------------------------------
+    Total:
+
+C:\Users\nickh\Desktop\embedded\alarm system\iar\Debug\Obj: [1]
+    all_inits.o                696                40
+    buzzer.o                   400                19
+    display.o                1'060      124       12
+    gpio_driver.o            1'032
+    i2c_driver.o               568
+    init_system_states.o       704       56
+    interrupts.o               228                 5
+    lcd.o                      696      476        2
+    main.o                      98
+    spi_driver.o               344
+    startup.o                  184                 4
+    startup_stm32f030x6.o      234
+    timers.o                   172
+    tmp75.o                    332               494
+    ------------------------------------------------
+    Total:                   6'748      656      576
+
+dl6M_tlf.a: [2]
+    abort.o                     10
+    exit.o                       8
+    low_level_init.o             4
+    sprintf.o                   64
+    xfail_s.o                   72                 4
+    xlocale_c.o                 12       59       56
+    xprintffull_nomb.o       4'196      106
+    xsprout.o                   10
+    ------------------------------------------------
+    Total:                   4'376      165       60
+
+m6M_tl.a: [3]
+    DblAddSub.o                424
+    DblCmpGe.o                  50
+    DblCmpLe.o                  50
+    DblDiv.o                   194
+    DblMul.o                   388
+    DblToI32.o                  82
+    FltCmpLe.o                  38
+    FltMul.o                   176
+    FltToDbl.o                  50
+    FltToS32.o                  58
+    IxxToDbl.o                  52
+    IxxToFlt.o                  54
+    ------------------------------------------------
+    Total:                   1'616
+
+rt6M_tl.a: [4]
+    ABImemcpy.o                 78
+    I32DivModFast.o            224
+    I64DivMod.o                106
+    I64DivZer.o                  2
+    IntDivZer.o                  2
+    cexit.o                     10
+    cmain.o                     30
+    copy_init3.o                48
+    cstartup_M.o                12
+    data_init.o                 40
+    memchr.o                    22
+    strchr.o                    18
+    strlen.o                    14
+    zero_init3.o                60
+    ------------------------------------------------
+    Total:                     666
+
+shb_l.a: [5]
+    exit.o                      20
+    ------------------------------------------------
+    Total:                      20
+
+    Linker created                       36    1'024
+----------------------------------------------------
+    Grand Total:            13'426      857    1'660
+
+
+*******************************************************************************
+*** ENTRY LIST
+***
+
+Entry                       Address   Size  Type      Object
+-----                       -------   ----  ----      ------
+.iar.init_table$$Base    0x800'3690          --   Gb  - Linker created -
+.iar.init_table$$Limit   0x800'36b4          --   Gb  - Linker created -
+?main                    0x800'36b5         Code  Gb  cmain.o [4]
+Blueled_init             0x800'3069   0x22  Code  Gb  all_inits.o [1]
+ButtonDown_init          0x800'3021   0x26  Code  Gb  all_inits.o [1]
+ButtonEnter_init         0x800'2ffb   0x26  Code  Gb  all_inits.o [1]
+ButtonUp_init            0x800'2fd5   0x26  Code  Gb  all_inits.o [1]
+CSPIN_Init               0x800'2fb3   0x22  Code  Gb  all_inits.o [1]
+CSTACK$$Base            0x2000'0280          --   Gb  - Linker created -
+CSTACK$$Limit           0x2000'0680          --   Gb  - Linker created -
+EXTI4_15_IRQHandler      0x800'3411   0x3c  Code  Gb  interrupts.o [1]
+GPIO_IRQHandling         0x800'272b   0x1a  Code  Gb  gpio_driver.o [1]
+GPIO_IRQInterruptConfig
+                         0x800'26b3   0x2e  Code  Gb  gpio_driver.o [1]
+GPIO_IRQPriorityConfig   0x800'26e1   0x4a  Code  Gb  gpio_driver.o [1]
+GPIO_Init                0x800'2431  0x22c  Code  Gb  gpio_driver.o [1]
+GPIO_PeripheralControl   0x800'235d   0xcc  Code  Gb  gpio_driver.o [1]
+GPIO_ToggleOutputPin     0x800'26a7    0xc  Code  Gb  gpio_driver.o [1]
+GPIO_WriteToOutputPin    0x800'2685   0x22  Code  Gb  gpio_driver.o [1]
+I2C1Handle              0x2000'021c   0x28  Data  Gb  all_inits.o [1]
+I2C1_GPIOInits           0x800'2ed1   0x2e  Code  Gb  all_inits.o [1]
+I2C_GenerateStartCondition
+                         0x800'2add    0xc  Code  Lc  i2c_driver.o [1]
+I2C_GenerateStopCondition
+                         0x800'2ae9    0xc  Code  Lc  i2c_driver.o [1]
+I2C_Init                 0x800'2931   0x4a  Code  Gb  i2c_driver.o [1]
+I2C_Inits                0x800'2eff   0x18  Code  Gb  all_inits.o [1]
+I2C_MasterReceiveData    0x800'2a41   0x86  Code  Gb  i2c_driver.o [1]
+I2C_MasterSendData       0x800'297b   0xb8  Code  Gb  i2c_driver.o [1]
+I2C_PeriClockControl     0x800'28db   0x56  Code  Gb  i2c_driver.o [1]
+I2C_PeripheralControl    0x800'28bd   0x1e  Code  Gb  i2c_driver.o [1]
+LCD_Select               0x800'1dc9    0xe  Code  Gb  lcd.o [1]
+LCD_Unselect             0x800'1dd7    0xe  Code  Gb  lcd.o [1]
+RSPIN_Init               0x800'2f8f   0x24  Code  Gb  all_inits.o [1]
+RSTPIN_Init              0x800'2f6b   0x24  Code  Gb  all_inits.o [1]
+Redled_init              0x800'3047   0x22  Code  Gb  all_inits.o [1]
+Region$$Table$$Base      0x800'3690          --   Gb  - Linker created -
+Region$$Table$$Limit     0x800'36b4          --   Gb  - Linker created -
+SPI1_GPIOInits           0x800'2f17   0x2c  Code  Gb  all_inits.o [1]
+SPI1_Inits               0x800'2f43   0x28  Code  Gb  all_inits.o [1]
+SPIPeripheralControl     0x800'281f   0x1e  Code  Gb  spi_driver.o [1]
+SPI_GetFlagStatus        0x800'285d   0x14  Code  Gb  spi_driver.o [1]
+SPI_Init                 0x800'27bb   0x64  Code  Gb  spi_driver.o [1]
+SPI_PeriClockControl     0x800'2765   0x56  Code  Gb  spi_driver.o [1]
+SPI_SSIConfig            0x800'283d   0x20  Code  Gb  spi_driver.o [1]
+SPI_SendData             0x800'2871   0x2a  Code  Gb  spi_driver.o [1]
+SysTick_Config           0x800'2b0f   0x28  Code  Gb  startup.o [1]
+SysTick_Handler          0x800'2aff   0x10  Code  Gb  startup.o [1]
+SysTick_Init             0x800'2b37   0x14  Code  Gb  startup.o [1]
+SystemInit               0x800'2af5    0xa  Code  Gb  startup.o [1]
+TIM14_IRQHandler         0x800'344d   0x1c  Code  Gb  interrupts.o [1]
+TIM14_Init_30s           0x800'3189   0x36  Code  Gb  timers.o [1]
+TIM3_IRQHandler          0x800'3469   0x32  Code  Gb  interrupts.o [1]
+TIM3_Init_10s            0x800'31bf   0x36  Code  Gb  timers.o [1]
+_LitobFullNoMb           0x800'0f51  0x120  Code  Lc  xprintffull_nomb.o [2]
+_Locale_lconv           0x2000'0000   0x38  Data  Lc  xlocale_c.o [2]
+_PrintfFullNoMb          0x800'00b1  0xea0  Code  Gb  xprintffull_nomb.o [2]
+_PutcharFullNoMb         0x800'10bd   0x22  Code  Lc  xprintffull_nomb.o [2]
+_PutcharsFullNoMb        0x800'10df   0x36  Code  Lc  xprintffull_nomb.o [2]
+_SProut                  0x800'1127    0xa  Code  Gb  xsprout.o [2]
+__ICFEDIT_region_RAM_end__ {Abs}
+                        0x2000'0fff         Data  Gb  <internal module>
+__ICFEDIT_region_RAM_start__ {Abs}
+                        0x2000'0000         Data  Gb  <internal module>
+__aeabi_cdcmple          0x800'11ef         Code  Gb  DblCmpLe.o [3]
+__aeabi_cdrcmple         0x800'1221         Code  Gb  DblCmpGe.o [3]
+__aeabi_cfcmple          0x800'2bad         Code  Gb  FltCmpLe.o [3]
+__aeabi_d2iz             0x800'1255         Code  Gb  DblToI32.o [3]
+__aeabi_d2uiz            0x800'1279         Code  Gb  DblToI32.o [3]
+__aeabi_ddiv             0x800'1565         Code  Gb  DblDiv.o [3]
+__aeabi_dmul             0x800'1627         Code  Gb  DblMul.o [3]
+__aeabi_dsub             0x800'1397         Code  Gb  DblAddSub.o [3]
+__aeabi_f2d              0x800'1d55         Code  Gb  FltToDbl.o [3]
+__aeabi_f2iz             0x800'2e95         Code  Gb  FltToS32.o [3]
+__aeabi_fmul             0x800'1ca3         Code  Gb  FltMul.o [3]
+__aeabi_i2d              0x800'12c9         Code  Gb  IxxToDbl.o [3]
+__aeabi_i2f              0x800'1c8d         Code  Gb  IxxToFlt.o [3]
+__aeabi_idiv             0x800'14b1         Code  Gb  I32DivModFast.o [4]
+__aeabi_idiv0            0x800'182d         Code  Gb  IntDivZer.o [4]
+__aeabi_idivmod          0x800'14b1         Code  Gb  I32DivModFast.o [4]
+__aeabi_ldiv0            0x800'1831         Code  Gb  I64DivZer.o [4]
+__aeabi_memcpy           0x800'11d5         Code  Gb  ABImemcpy.o [4]
+__aeabi_memcpy4          0x800'11a1         Code  Gb  ABImemcpy.o [4]
+__aeabi_memcpy8          0x800'11a1         Code  Gb  ABImemcpy.o [4]
+__aeabi_ui2d             0x800'12a9         Code  Gb  IxxToDbl.o [3]
+__aeabi_ui2f             0x800'1c6d         Code  Gb  IxxToFlt.o [3]
+__aeabi_uidiv            0x800'14b7         Code  Gb  I32DivModFast.o [4]
+__aeabi_uidivmod         0x800'14b7         Code  Gb  I32DivModFast.o [4]
+__aeabi_uldivmod         0x800'17b9         Code  Gb  I64DivMod.o [4]
+__cmain                  0x800'36b5         Code  Gb  cmain.o [4]
+__exit                   0x800'1835   0x14  Code  Gb  exit.o [5]
+__iar_Fail_s             0x800'1131   0x22  Code  Gb  xfail_s.o [2]
+__iar_Memchr             0x800'1189         Code  Gb  memchr.o [4]
+__iar_Memcpy             0x800'11e1         Code  Gb  ABImemcpy.o [4]
+__iar_Strchr             0x800'1115         Code  Gb  strchr.o [4]
+__iar_copy_init3         0x800'3639   0x30  Code  Gb  copy_init3.o [4]
+__iar_d2uiz              0x800'127d         Code  Gb  DblToI32.o [3]
+__iar_data_init3         0x800'3669   0x28  Code  Gb  data_init.o [4]
+__iar_program_start      0x800'3785         Code  Gb  cstartup_M.o [4]
+__iar_zero_init3         0x800'35c1   0x3c  Code  Gb  zero_init3.o [4]
+__low_level_init         0x800'36d3    0x4  Code  Gb  low_level_init.o [2]
+__vector_table           0x800'0000         Data  Gb  startup_stm32f030x6.o [1]
+_call_main               0x800'36c1         Code  Gb  cmain.o [4]
+_exit                    0x800'36e1         Code  Gb  cexit.o [4]
+_main                    0x800'36cf         Code  Gb  cmain.o [4]
+abort                    0x800'1823    0xa  Code  Gb  abort.o [2]
+activate_backlight       0x800'2e1d    0xe  Code  Lc  init_system_states.o [1]
+activate_backlight_counter
+                         0x800'1c05   0x1a  Code  Gb  display.o [1]
+activate_cold_relay      0x800'2e75   0x10  Code  Lc  init_system_states.o [1]
+activate_heat_relay      0x800'2e55   0x10  Code  Lc  init_system_states.o [1]
+baclight_init            0x800'30af   0x22  Code  Gb  all_inits.o [1]
+beep_count              0x2000'026d    0x1  Data  Lc  buzzer.o [1]
+beep_once               0x2000'026a    0x1  Data  Lc  buzzer.o [1]
+beep_stage              0x2000'026e    0x1  Data  Lc  buzzer.o [1]
+beep_start              0x2000'0248    0x4  Data  Lc  buzzer.o [1]
+blueLed_off              0x800'2e0f    0xe  Code  Lc  init_system_states.o [1]
+blueLed_on               0x800'2e01    0xe  Code  Lc  init_system_states.o [1]
+buffer_count            0x2000'0279    0x1  Data  Lc  tmp75.o [1]
+buzzer_active           0x2000'026f    0x1  Data  Lc  buzzer.o [1]
+buzzer_double_beep_request
+                         0x800'2243   0x24  Code  Gb  buzzer.o [1]
+buzzer_init              0x800'308b   0x24  Code  Gb  all_inits.o [1]
+buzzer_init              0x800'21cd   0x48  Code  Lc  buzzer.o [1]
+buzzer_init::active     0x2000'0270    0x1  Data  Lc  buzzer.o [1]
+buzzer_init::start_time
+                        0x2000'024c    0x4  Data  Lc  buzzer.o [1]
+buzzer_off               0x800'234d   0x10  Code  Gb  buzzer.o [1]
+buzzer_on                0x800'22ef   0x2c  Code  Gb  buzzer.o [1]
+buzzer_single_beep       0x800'2215   0x2e  Code  Gb  buzzer.o [1]
+buzzer_state            0x2000'026c    0x1  Data  Lc  buzzer.o [1]
+buzzer_triple_beep_request
+                         0x800'2267   0x24  Code  Gb  buzzer.o [1]
+buzzer_update            0x800'228b   0x64  Code  Gb  buzzer.o [1]
+clear_state_line         0x800'2c81   0x20  Code  Lc  init_system_states.o [1]
+cold_relay_init          0x800'30f5   0x24  Code  Gb  all_inits.o [1]
+convertTemp              0x800'1849   0x20  Code  Gb  display.o [1]
+current_column          0x2000'0277    0x1  Data  Gb  lcd.o [1]
+current_page            0x2000'0276    0x1  Data  Gb  lcd.o [1]
+delay                    0x800'2061   0x10  Code  Gb  lcd.o [1]
+delay_ms                 0x800'2b95   0x18  Code  Gb  startup.o [1]
+delay_us                 0x800'2b4b   0x34  Code  Gb  startup.o [1]
+disable_cold_relay       0x800'2e85   0x10  Code  Lc  init_system_states.o [1]
+disable_heat_relay       0x800'2e65   0x10  Code  Lc  init_system_states.o [1]
+displayTemp              0x800'1869   0xb2  Code  Lc  display.o [1]
+display_lower_threshold
+                         0x800'19ad   0x76  Code  Gb  display.o [1]
+display_max_temp         0x800'1a23   0x3c  Code  Gb  display.o [1]
+display_min_temp         0x800'1a5f   0x3c  Code  Gb  display.o [1]
+display_state_high_temp
+                         0x800'2d0d   0x6c  Code  Lc  init_system_states.o [1]
+display_state_low_temp   0x800'2d79   0x6c  Code  Lc  init_system_states.o [1]
+display_state_normal     0x800'2ca1   0x6c  Code  Lc  init_system_states.o [1]
+display_temp             0x800'191b   0x1c  Code  Gb  display.o [1]
+display_upper_threshold
+                         0x800'1937   0x76  Code  Gb  display.o [1]
+exit                     0x800'36d7    0x8  Code  Gb  exit.o [2]
+flag_down               0x2000'0273    0x1  Data  Gb  display.o [1]
+flag_enter              0x2000'0274    0x1  Data  Gb  display.o [1]
+flag_up                 0x2000'0272    0x1  Data  Gb  display.o [1]
+font5x8                  0x800'3234  0x1dc  Data  Gb  lcd.o [1]
+hardware_init            0x800'3119   0x5e  Code  Gb  all_inits.o [1]
+heat_relay_init          0x800'30d1   0x24  Code  Gb  all_inits.o [1]
+irq_handlers_init        0x800'34c1   0x34  Code  Gb  interrupts.o [1]
+last_btn_time           0x2000'0250    0x4  Data  Gb  display.o [1]
+last_toggle_time        0x2000'0244    0x4  Data  Lc  buzzer.o [1]
+latest_temp             0x2000'0254    0x4  Data  Gb  interrupts.o [1]
+lcd_init                 0x800'1e49   0x5a  Code  Gb  lcd.o [1]
+lcd_send_command         0x800'1de5   0x32  Code  Gb  lcd.o [1]
+lcd_send_data            0x800'1e17   0x32  Code  Gb  lcd.o [1]
+lcd_set_black_background
+                         0x800'1f13   0x2e  Code  Gb  lcd.o [1]
+lcd_set_column           0x800'1eb7   0x1e  Code  Gb  lcd.o [1]
+lcd_set_page             0x800'1ea3   0x14  Code  Gb  lcd.o [1]
+lcd_write_char           0x800'1ed5   0x3e  Code  Gb  lcd.o [1]
+lcd_write_char_big       0x800'1f5d   0xfe  Code  Gb  lcd.o [1]
+lcd_write_string_big     0x800'1f41   0x16  Code  Gb  lcd.o [1]
+localeconv               0x800'17ad    0x4  Code  Gb  xlocale_c.o [2]
+lower_threshold         0x2000'0038    0x2  Data  Gb  display.o [1]
+main                     0x800'355f   0x62  Code  Gb  main.o [1]
+main_threshold_temp_set
+                         0x800'1aad  0x106  Code  Gb  display.o [1]
+max_temp                0x2000'0260    0x4  Data  Gb  tmp75.o [1]
+memchr                   0x800'1189         Code  Gb  memchr.o [4]
+min_temp                0x2000'025c    0x4  Data  Gb  tmp75.o [1]
+ms_ticks                0x2000'0258    0x4  Data  Gb  startup.o [1]
+new_data_ready          0x2000'0275    0x1  Data  Gb  interrupts.o [1]
+new_max_event           0x2000'027b    0x1  Data  Gb  tmp75.o [1]
+new_min_event           0x2000'027a    0x1  Data  Gb  tmp75.o [1]
+receive_temp_measurement
+                         0x800'2081   0x60  Code  Gb  tmp75.o [1]
+redLed_off               0x800'2df3    0xe  Code  Lc  init_system_states.o [1]
+redLed_on                0x800'2de5    0xe  Code  Lc  init_system_states.o [1]
+scale                    0x800'1071   0x44  Code  Lc  xprintffull_nomb.o [2]
+sec_hand                0x2000'0264    0x4  Data  Lc  xfail_s.o [2]
+selected_option         0x2000'0271    0x1  Data  Gb  display.o [1]
+set_state                0x800'2bd5   0x3e  Code  Gb  init_system_states.o [1]
+single_beep_request     0x2000'026b    0x1  Data  Lc  buzzer.o [1]
+sprintf                  0x800'1d89   0x40  Code  Gb  sprintf.o [2]
+store_temperature        0x800'20e1   0x2e  Code  Gb  tmp75.o [1]
+strchr                   0x800'1115         Code  Gb  strchr.o [4]
+strlen                   0x800'1179         Code  Gb  strlen.o [4]
+system_state_process     0x800'2c13   0x6e  Code  Gb  init_system_states.o [1]
+temp_buffer             0x2000'003c  0x1e0  Data  Lc  tmp75.o [1]
+temp_index              0x2000'0278    0x1  Data  Lc  tmp75.o [1]
+temperature             0x2000'0268    0x2  Data  Gb  tmp75.o [1]
+update_min_max           0x800'210f   0x8a  Code  Gb  tmp75.o [1]
+upper_threshold         0x2000'003a    0x2  Data  Gb  display.o [1]
+user_toggle_selection    0x800'1bb9   0x44  Code  Lc  display.o [1]
+
+
+[1] = C:\Users\nickh\Desktop\embedded\alarm system\iar\Debug\Obj
+[2] = dl6M_tlf.a
+[3] = m6M_tl.a
+[4] = rt6M_tl.a
+[5] = shb_l.a
+
+  13'426 bytes of readonly  code memory
+     857 bytes of readonly  data memory
+   1'660 bytes of readwrite data memory
+
+Errors: none
+Warnings: none

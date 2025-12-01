@@ -6,6 +6,17 @@
         "stm32l476.h": "c",
         "i2c_driver.h": "c",
         "rcc_driver.h": "c",
-        "string.h": "c"
+        "string.h": "c",
+        "timers.h": "c",
+        "lcd.h": "c",
+        "stm32f030.h": "c",
+        "main.h": "c",
+        "pass_management.h": "c",
+        "startup.h": "c",
+        "all_inits.h": "c",
+        "leds.h": "c",
+        "display.h": "c",
+        "tmp75.h": "c",
+        "buzzer.h": "c"
     }
 }

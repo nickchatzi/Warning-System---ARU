@@ -2,7 +2,7 @@
 #ifndef SPI_DRIVER_H_
 #define SPI_DRIVER_H_
 
-#include "stm32l476.h"
+#include "stm32f030.h"
 
 /****************STRUCTURE FOR SPIx PIN CONFIGURATION****************/
 
@@ -154,7 +154,6 @@ typedef struct
 
 #define RXNE                                0    
 #define TXE                                 1
-#define RESERVED                            2
 #define CRCERR                              4
 #define MODF                                5
 #define OVR                                 6

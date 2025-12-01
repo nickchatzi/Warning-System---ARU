@@ -1,41 +1,7 @@
-#include "stm32l476.h"
+#include "stm32f030.h"
+#include "startup.h"
 
-#if !defined  (HSE_VALUE)
-  #define HSE_VALUE    8000000U  /*!< Value of the External oscillator in Hz */
-#endif /* HSE_VALUE */
-
-#if !defined  (MSI_VALUE)
-  #define MSI_VALUE    4000000U  /*!< Value of the Internal oscillator in Hz*/
-#endif /* MSI_VALUE */
-
-#if !defined  (HSI_VALUE)
-  #define HSI_VALUE    16000000U /*!< Value of the Internal oscillator in Hz*/
-#endif /* HSI_VALUE */
-
-/*!< Uncomment the following line if you need to relocate the vector table
-     anywhere in Flash or Sram, else the vector table is kept at the automatic
-     remap of boot address selected */
-#define USER_VECT_TAB_ADDRESS 
-
-#if defined(USER_VECT_TAB_ADDRESS)
-/*!< Uncomment the following line if you need to relocate your vector Table
-     in Sram else user remap will be done in Flash. */
-/* #define VECT_TAB_SRAM */
-
-#if defined(VECT_TAB_SRAM)
-#define VECT_TAB_BASE_ADDRESS   SRAM1_BASEADDR      /*!< Vector Table base address field.
-                                                     This value must be a multiple of 0x200. */
-#define VECT_TAB_OFFSET         0x00000000U     /*!< Vector Table base offset field.
-                                                     This value must be a multiple of 0x200. */
-#else
-#define VECT_TAB_BASE_ADDRESS   FLASH_BASEADDR      /*!< Vector Table base address field.
-                                                     This value must be a multiple of 0x200. */
-#define VECT_TAB_OFFSET         0x00000000U     /*!< Vector Table base offset field.
-                                                     This value must be a multiple of 0x200. */
-#endif /* VECT_TAB_SRAM */
-#endif /* USER_VECT_TAB_ADDRESS */
-
-
+volatile uint32_t ms_ticks = 0;
 
 void SystemInit(void)
 {
@@ -48,4 +14,59 @@ void SystemInit(void)
 #if (__FPU_PRESENT == 1) && (__FPU_USED == 1)
   SCB->CPACR |= ((3UL << 20U)|(3UL << 22U));  /* set CP10 and CP11 Full Access */
 #endif
+}
+
+void SysTick_Handler(void) 
+{
+  ms_ticks++;
+  buzzer_update();
+}
+
+// -----------  SysTick_Config() Function -----------
+int SysTick_Config(uint32_t ticks)
+{
+    if ((ticks - 1UL) > SysTick_LOAD_RELOAD_Msk)
+        return 1;  // Value too high, overflow error
+
+    SysTick->LOAD  = ticks - 1UL;                         // Set reload register
+    SysTick->VAL   = 0UL;                                 // Clear current value
+    SysTick->CTRL  = SysTick_CTRL_CLKSOURCE_Msk |         // Use processor clock
+                     SysTick_CTRL_TICKINT_Msk   |         // Enable interrupt
+                     SysTick_CTRL_ENABLE_Msk;             // Enable SysTick
+    return 0;  // Success
+}
+
+void SysTick_Init(void)
+{
+    SysTick->LOAD = (32000000 / 1000000) - 1;   // 1 µs tick at  MHz
+    SysTick->VAL  = 0;
+    SysTick->CTRL = SysTick_CTRL_CLKSOURCE_Msk | SysTick_CTRL_ENABLE_Msk;
+}
+
+
+void delay_us(uint32_t us)
+{
+    uint32_t start = SysTick->VAL;
+    uint32_t ticks_per_us = (HSI_VALUE / 1000000);
+    uint32_t ticks = us * ticks_per_us;
+    uint32_t elapsed = 0;
+    uint32_t prev = start;
+
+    while (elapsed < ticks)
+    {
+        uint32_t now = SysTick->VAL;
+        if (now < prev)
+            elapsed += prev - now;
+        else
+            elapsed += SysTick->LOAD - (now - prev);
+        prev = now;
+    }
+}
+
+void delay_ms(uint32_t ms)
+{
+    while (ms--)
+    {
+        delay_us(1000);   // 1 ms = 1000 µs
+    }
 }

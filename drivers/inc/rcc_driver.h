@@ -9,8 +9,7 @@
 #define assert_param(expr) ((void)0)
 #endif
 
-#include "stm32l476.h"
-
+#include "stm32f030.h"
 
 
 /****************STRUCTURE FOR RCC CONFIGURATION****************/

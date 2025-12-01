@@ -2,7 +2,7 @@
 #ifndef GPIO_DRIVER_H_
 #define GPIO_DRIVER_H_
 
-#include "stm32l476.h"
+#include "stm32f030.h"
 
 /****************STRUCTURE FOR GPIOx PIN CONFIGURATION****************/
 

@@ -2,7 +2,7 @@
 #ifndef I2C_DRIVER_H_
 #define I2C_DRIVER_H_
 
-#include "stm32l476.h"
+#include "stm32f030.h"
 
 /****************STRUCTURE FOR I2Cx PIN CONFIGURATION****************/
 
@@ -80,98 +80,98 @@ typedef struct
 
 /********************CR1 REGISTER BIT DEFINITIONS*********************/
 
-#define PE                                  0     
-#define TXIE                                1
-#define RXIE                                2
-#define ADDRIE                              3
-#define NACKIE                              4
-#define STOPIE                              5
-#define TCIE                                6
-#define ERRIE                               7
-#define DNF                                 8
-#define ANFOFF                              12
-#define TXDMAEN                             14
-#define RXDMAEN                             15
-#define SCB_I2C                             16
-#define NOSTRETCH                           17
+#define I2C_PE                                  0     
+#define I2C_TXIE                                1
+#define I2C_RXIE                                2
+#define I2C_ADDRIE                              3
+#define I2C_NACKIE                              4
+#define I2C_STOPIE                              5
+#define I2C_TCIE                                6
+#define I2C_ERRIE                               7
+#define I2C_DNF                                 8
+#define I2C_ANFOFF                              12
+#define I2C_TXDMAEN                             14
+#define I2C_RXDMAEN                             15
+#define I2C_SCB_I2C                             16
+#define I2C_NOSTRETCH                           17
 
 /*********************************************************************/
 
 /********************CR2 REGISTER BIT DEFINITIONS*********************/
 
-#define SADD                                0    
-#define RD_WRN                              10
-#define ADD10                               11
-#define HEAD10R                             12
-#define START                               13
-#define STOP                                14
-#define NACK                                15
-#define NBYTES                              16
-#define RELOAD                              24
-#define AUTOEND                             25
-#define PECBYTE                             26
+#define I2C_SADD                                0    
+#define I2C_RD_WRN                              10
+#define I2C_ADD10                               11
+#define I2C_HEAD10R                             12
+#define I2C_START                               13
+#define I2C_STOP                                14
+#define I2C_NACK                                15
+#define I2C_NBYTES                              16
+#define I2C_RELOAD                              24
+#define I2C_AUTOEND                             25
+#define I2C_PECBYTE                             26
 
 /*********************************************************************/
 
 /********************CR2 REGISTER BIT DEFINITIONS*********************/
 
-#define OA1                                 0    
-#define OA1MODE                             10
-#define OA1EN                               15
+#define I2C_OA1                                 0    
+#define I2C_OA1MODE                             10
+#define I2C_OA1EN                               15
 
 /*********************************************************************/
 
 /******************TIMINGR REGISTER BIT DEFINITIONS*******************/
 
-#define SCLL                                0    
-#define SCLH                                8
-#define SDADEL                              16
-#define SCLDEL                              20
-#define RES                                 24
-#define PRESC                               28
+#define I2C_SCLL                                0    
+#define I2C_SCLH                                8
+#define I2C_SDADEL                              16
+#define I2C_SCLDEL                              20
+#define I2C_RES                                 24
+#define I2C_PRESC                               28
 
 /*********************************************************************/
 
 /********************ISR REGISTER BIT DEFINITIONS*********************/
 
-#define TXE                                 0    
-#define TXIS                                1
-#define RXNE                                2
-#define ADDR                                3
-#define NACKF                               4
-#define STOPF                               5
-#define TC                                  6
-#define TCR                                 7
-#define BERR                                8
-#define ARLO                                9
-#define OVR                                 10
-#define PECERR                              11
-#define TIMEOUT                             12
-#define ALERT                               13
-#define BUSY                                15
-#define DIR                                 16
-#define ADDCODE                             17
+#define I2C_TXE                                 0    
+#define I2C_TXIS                                1
+#define I2C_RXNE                                2
+#define I2C_ADDR                                3
+#define I2C_NACKF                               4
+#define I2C_STOPF                               5
+#define I2C_TC                                  6
+#define I2C_TCR                                 7
+#define I2C_BERR                                8
+#define I2C_ARLO                                9
+#define I2C_OVR                                 10
+#define I2C_PECERR                              11
+#define I2C_TIMEOUT                             12
+#define I2C_ALERT                               13
+#define I2C_BUSY                                15
+#define I2C_DIR                                 16
+#define I2C_ADDCODE                             17
 
 /*********************************************************************/
 
 /********************ICR REGISTER BIT DEFINITIONS*********************/
 
-#define ADDRCF                                3    
-#define NACKCF                                4
-#define STOPCF                                5
-#define BERRCF                                8
-#define ARLOCF                                9
-#define OVRCF                                 10
-#define PECCF                                 11
-#define TIMOUTCF                              12
-#define ALERTCF                               13
+#define I2C_ADDRCF                                3    
+#define I2C_NACKCF                                4
+#define I2C_STOPCF                                5
+#define I2C_BERRCF                                8
+#define I2C_ARLOCF                                9
+#define I2C_OVRCF                                 10
+#define I2C_PECCF                                 11
+#define I2C_TIMOUTCF                              12
+#define I2C_ALERTCF                               13
 
 /*********************************************************************/
 
 /****************RXDR, TXDR REGISTER BIT DEFINITIONS******************/
 
-#define RXDATA                                0
-#define RTDATA                                0
+#define I2C_RXDATA                                0
+#define I2C_RTDATA                                0
 
 /*********************************************************************/
 
@@ -218,6 +218,7 @@ typedef struct
 #define I2C_READY                           0
 #define I2C_BUSY_IN_RX                      1
 #define I2C_BUSY_IN_TX                      2
+#define I2C_ISR_BUSY                        4
 
 /*********************************************************************/
 
