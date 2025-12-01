@@ -2,6 +2,7 @@
 #define TMP75_H
 
 #include "stm32f030.h"
+#include "i2c_driver.h"
 
 #pragma once
 

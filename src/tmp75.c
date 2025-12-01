@@ -1,10 +1,9 @@
-#include "stm32f030.h"
-#include "i2c_driver.h"
 #include "timers.h"
 #include "all_inits.h"
 #include "startup.h"
 #include "tmp75.h"
 #include "buzzer.h"
+#include "display.h"
 
 /****************************** PRIVATE DECLARATIONS *********************************/
 
@@ -64,7 +63,7 @@ void initTMP75()
 void receive_temp_measurement()
 {
     uint8_t TempRegByte = 0x00;
-    uint8_t osMode = 0x80;
+    //uint8_t osMode = 0x80;
   
     if (TIM14_SR & (1 << 0)) 
     {

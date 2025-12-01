@@ -29,6 +29,7 @@
 #include "display.h"
 #include "timers.h"
 #include "tmp75.h"
+#include "buzzer.h"
 #include "init_system_states.h"
 
 int main(void)

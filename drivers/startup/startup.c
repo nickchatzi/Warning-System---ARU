@@ -1,5 +1,6 @@
 #include "stm32f030.h"
 #include "startup.h"
+#include "buzzer.h"
 
 volatile uint32_t ms_ticks = 0;
 

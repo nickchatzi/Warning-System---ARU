@@ -4,6 +4,7 @@
 #include "i2c_driver.h"
 #include "stm32f030.h"
 #include "rcc_driver.h"
+#include "timers.h"
 
 I2C_Handle I2C1Handle;
 
