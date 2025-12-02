@@ -209,7 +209,11 @@ static void activate_heat_relay(void)
 
 static void disable_heat_relay(void)
 {
-    GPIO_WriteToOutputPin(GPIOA, GPIO_PIN_NO_11, SET);
+    float temp_float = convertTemp(); 
+    int16_t temp = (int16_t)(temp_float * 10.0f);   
+    uint8_t hysteris = 3.0f;
+    if (temp <= upper_threshold - hysteris){
+        GPIO_WriteToOutputPin(GPIOA, GPIO_PIN_NO_11, SET);}
 }
 
 static void activate_cold_relay(void)
@@ -219,5 +223,9 @@ static void activate_cold_relay(void)
 
 static void disable_cold_relay(void)
 {
-    GPIO_WriteToOutputPin(GPIOA, GPIO_PIN_NO_12, SET);
+    float temp_float = convertTemp(); 
+    int16_t temp = (int16_t)(temp_float * 10.0f);   
+    uint8_t hysteris = 3.0f;
+    if (temp >= lower_threshold + hysteris){
+    GPIO_WriteToOutputPin(GPIOA, GPIO_PIN_NO_12, SET);}
 }

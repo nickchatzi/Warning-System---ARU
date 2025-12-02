@@ -16,9 +16,11 @@ extern volatile uint8_t new_min_event;
 extern volatile uint8_t new_max_event;
 
 /************************ function definitions ********************************/
-void initTMP75();
-void receive_temp_measurement();
+void initTMP75(void);
+void receive_temp_measurement(void);
 void store_temperature(float temp);
 void update_min_max(void);
+//void redLed_update(void);
+//void blueLed_update(void);
 
 #endif

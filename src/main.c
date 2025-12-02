@@ -46,6 +46,7 @@ int main(void)
   {
     SystemState_t s = set_state();
     buzzer_update();
+    //redLed_update();
     system_state_process(s);
     main_threshold_temp_set();
     display_upper_threshold();

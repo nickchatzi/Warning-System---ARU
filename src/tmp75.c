@@ -12,7 +12,12 @@ static uint8_t temp_index = 0;      /*Index variable to track where to store the
 static uint8_t buffer_count = 0;    /*Holds the ammount of actual data inside the buffer. Basically how many readings have been stored so far*/
 volatile uint8_t new_min_event = 0;
 volatile uint8_t new_max_event = 0;
+static uint8_t  redLed_blink_active = 0;
+static uint32_t redLed_start_time = 0;
+static uint32_t redLed_blink_duration = 0;
 
+static void redLed_blink_request(uint32_t duration_ms);
+static void blueLed_blink_request(uint32_t duration_ms);
 
 /******************************* GLOBAL VARIABLES ************************************/
 
@@ -34,7 +39,7 @@ float max_temp = 0.0f;      /*Maximum temperature float*/
  
 */
 
-void initTMP75()
+void initTMP75(void)
 {
     uint8_t configRegByte = 0x01;
 
@@ -60,7 +65,7 @@ void initTMP75()
  
 */
 
-void receive_temp_measurement()
+void receive_temp_measurement(void)
 {
     uint8_t TempRegByte = 0x00;
     //uint8_t osMode = 0x80;
@@ -161,6 +166,7 @@ void update_min_max(void)
         new_min_event = 1;
         buzzer_double_beep_request();
         activate_backlight_counter();
+        blueLed_blink_request(2000);
     }
 
     // Trigger event if new max appeared
@@ -169,5 +175,50 @@ void update_min_max(void)
         new_max_event = 1;
         buzzer_triple_beep_request();
         activate_backlight_counter();
+        redLed_blink_request(2000);
     }           
+}
+
+/************************ RED LED BLINK REQUEST ********************************
+ 
+ * @fn          -redLed_blink_request
+ *
+ * @brief       -Blink the red led once             
+ * 
+ * @param[in]   -
+ *
+ * @return      -void
+ * 
+ * @note        -none
+ 
+*/
+
+static void redLed_blink_request(uint32_t duration_ms)
+{
+    redLed_blink_duration = duration_ms;
+    redLed_blink_active = 1;
+    redLed_start_time = ms_ticks;
+    GPIO_WriteToOutputPin(GPIOB, GPIO_PIN_NO_8, SET);
+}
+
+/************************ BLUE LED BLINK REQUEST ********************************
+ 
+ * @fn          -blueLed_blink_request
+ *
+ * @brief       -Blink the blue led once             
+ * 
+ * @param[in]   -
+ *
+ * @return      -void
+ * 
+ * @note        -none
+ 
+*/
+
+static void blueLed_blink_request(uint32_t duration_ms)
+{
+    redLed_blink_duration = duration_ms;
+    redLed_blink_active = 1;
+    redLed_start_time = ms_ticks;
+    GPIO_WriteToOutputPin(GPIOB, GPIO_PIN_NO_7, SET);
 }
