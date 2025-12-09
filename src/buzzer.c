@@ -49,7 +49,7 @@ static void buzzer_init(uint32_t duration_ms)
     {
         GPIO_WriteToOutputPin(GPIOA, GPIO_PIN_NO_10, RESET); // buzzer OFF
         active = 0;
-        beep_once = 0;    // clear request
+        beep_once = 0;    
     }
 }
 

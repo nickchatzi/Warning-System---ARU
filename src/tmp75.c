@@ -67,8 +67,9 @@ void initTMP75(void)
 
 void receive_temp_measurement(void)
 {
+    uint8_t configRegByte = 0x01;
     uint8_t TempRegByte = 0x00;
-    //uint8_t osMode = 0x80;
+    uint8_t osMode = 0x80;
   
     if (TIM14_SR & (1 << 0)) 
     {
@@ -76,19 +77,11 @@ void receive_temp_measurement(void)
 
         I2C_PeripheralControl(I2C1, ENABLE);
 
-        //I2C_MasterSendData(&I2C1Handle,&osMode,1,SLAVE_ADDRESS, I2C_DISABLE_SR);
+        I2C_MasterSendData(&I2C1Handle,&configRegByte,1,SLAVE_ADDRESS, I2C_ENABLE_SR);
 
-        //delay_ms(150);
-
-        //I2C1_REG_RESET();
-
-        //I2C_PeripheralControl(I2C1, ENABLE);
+        I2C_MasterSendData(&I2C1Handle,&osMode,1,SLAVE_ADDRESS, I2C_ENABLE_SR);
 
         I2C_MasterSendData(&I2C1Handle,&TempRegByte,1,SLAVE_ADDRESS, I2C_ENABLE_SR);
-
-        //I2C1_REG_RESET();
-
-        //I2C_PeripheralControl(I2C1, ENABLE);
 
         I2C_MasterReceiveData(&I2C1Handle, temperature, 2, SLAVE_ADDRESS, I2C_DISABLE_SR);
 
@@ -185,7 +178,7 @@ void update_min_max(void)
  *
  * @brief       -Blink the red led once             
  * 
- * @param[in]   -
+ * @param[in]   -duration in ms
  *
  * @return      -void
  * 
@@ -207,7 +200,7 @@ static void redLed_blink_request(uint32_t duration_ms)
  *
  * @brief       -Blink the blue led once             
  * 
- * @param[in]   -
+ * @param[in]   -duration in ms
  *
  * @return      -void
  * 

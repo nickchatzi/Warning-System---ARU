@@ -16,10 +16,15 @@ static void activate_backlight(void);
 static void display_state_normal(void);
 static void display_state_high_temp(void);
 static void display_state_low_temp(void);
-static void activate_heat_relay(void);
-static void disable_heat_relay(void);
-static void activate_cold_relay(void);
-static void disable_cold_relay(void);
+static void relay_pulse_request(uint32_t duration_ms, GPIOx_RegDef *pGpiox, uint8_t PinNumber);
+static void heat_relay_set();
+static void heat_relay_reset(); 
+static void cold_relay_set(); 
+static void cold_relay_reset(); 
+
+static uint8_t  relay_active = 0;
+static uint32_t relay_start_time = 0;
+static uint32_t relay_pulse_duration = 0;
 
 /******************************* SET STATE **************************************
  
@@ -79,8 +84,7 @@ void system_state_process(const SystemState_t s)
         buzzer_on(FAST_BEEP_PERIOD_MS);
         display_state_high_temp();
         activate_backlight();
-        activate_heat_relay();
-        disable_cold_relay();
+        heat_relay_set();
         break;
 
     case STATE_LOW_TEMP:
@@ -89,8 +93,7 @@ void system_state_process(const SystemState_t s)
         buzzer_on(SLOW_BEEP_PERIOD_MS);
         display_state_low_temp();
         activate_backlight();
-        activate_cold_relay();
-        disable_heat_relay();
+        cold_relay_set();
         break;
 
     default:
@@ -98,8 +101,8 @@ void system_state_process(const SystemState_t s)
         blueLed_off();
         buzzer_off();
         display_state_normal();
-        disable_cold_relay();
-        disable_heat_relay();
+        heat_relay_reset();
+        cold_relay_reset();
         break;
     }
 }
@@ -202,30 +205,46 @@ static void activate_backlight(void)
     GPIO_WriteToOutputPin(GPIOB, GPIO_PIN_NO_5, SET);
 }
 
-static void activate_heat_relay(void)
+static void relay_pulse_request(uint32_t duration_ms, GPIOx_RegDef *pGpiox, uint8_t PinNumber)
 {
-    GPIO_WriteToOutputPin(GPIOA, GPIO_PIN_NO_11, RESET);
+    relay_pulse_duration = duration_ms;
+    relay_active = 1;
+    relay_start_time = ms_ticks;
+    GPIO_WriteToOutputPin(pGpiox, PinNumber, SET);
 }
 
-static void disable_heat_relay(void)
+static void heat_relay_set() 
+{
+    relay_pulse_request(10, GPIOA, GPIO_PIN_NO_1);
+    GPIO_WriteToOutputPin(GPIOA, GPIO_PIN_NO_2, RESET);
+}
+
+static void heat_relay_reset() 
 {
     float temp_float = convertTemp(); 
     int16_t temp = (int16_t)(temp_float * 10.0f);   
     uint8_t hysteris = 3.0f;
-    if (temp <= upper_threshold - hysteris){
-        GPIO_WriteToOutputPin(GPIOA, GPIO_PIN_NO_11, SET);}
+    if (temp >= lower_threshold + hysteris)
+    {
+        relay_pulse_request(10, GPIOA, GPIO_PIN_NO_2);
+        GPIO_WriteToOutputPin(GPIOA, GPIO_PIN_NO_1, RESET);
+    }
 }
 
-static void activate_cold_relay(void)
+static void cold_relay_set() 
 {
-    GPIO_WriteToOutputPin(GPIOA, GPIO_PIN_NO_12, RESET);
+    relay_pulse_request(10, GPIOA, GPIO_PIN_NO_3);
+    GPIO_WriteToOutputPin(GPIOA, GPIO_PIN_NO_4, RESET);
 }
 
-static void disable_cold_relay(void)
+static void cold_relay_reset() 
 {
     float temp_float = convertTemp(); 
     int16_t temp = (int16_t)(temp_float * 10.0f);   
     uint8_t hysteris = 3.0f;
-    if (temp >= lower_threshold + hysteris){
-    GPIO_WriteToOutputPin(GPIOA, GPIO_PIN_NO_12, SET);}
+    if (temp >= lower_threshold + hysteris)
+    {    
+    relay_pulse_request(10, GPIOA, GPIO_PIN_NO_4);
+    GPIO_WriteToOutputPin(GPIOA, GPIO_PIN_NO_3, RESET);
+    }
 }
