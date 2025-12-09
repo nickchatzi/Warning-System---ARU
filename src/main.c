@@ -36,7 +36,7 @@ int main(void)
 {
   SysTick_Init();
   hardware_init();
-  //initTMP75();
+  initTMP75();
   irq_handlers_init();
   lcd_init();
   lcd_set_black_background();
@@ -46,7 +46,6 @@ int main(void)
   {
     SystemState_t s = set_state();
     buzzer_update();
-    //redLed_update();
     system_state_process(s);
     main_threshold_temp_set();
     display_upper_threshold();

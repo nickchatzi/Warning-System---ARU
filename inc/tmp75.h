@@ -20,7 +20,5 @@ void initTMP75(void);
 void receive_temp_measurement(void);
 void store_temperature(float temp);
 void update_min_max(void);
-//void redLed_update(void);
-//void blueLed_update(void);
 
 #endif
